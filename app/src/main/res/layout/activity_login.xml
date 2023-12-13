@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".presentation.LoginActivity">
+
+
+
+    <EditText
+        android:id="@+id/enterEmailAddress"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="@string/enter_email"
+        android:paddingStart="16dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frankenstaineImage" />
+
+    <EditText
+        android:id="@+id/enterPassword"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_edit_text"
+        android:ems="10"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/enterEmailAddress"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/enterEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/enterEmailAddress" />
+
+    <TextView
+        android:id="@+id/noneAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/account_is_not_present"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpButton"
+        app:layout_constraintStart_toStartOf="@+id/logInButton"
+        app:layout_constraintTop_toTopOf="@+id/signUpButton" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/forgotPasswordButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/forgot_password"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/facebookLogInButton"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/googleLogInButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/googleLogInButton" />-->
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:onClick="onClickSignUp"
+        android:text="@string/sign_up"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/logInButton"
+        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/log_in"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/enterPassword"
+        app:layout_constraintStart_toStartOf="@+id/enterPassword"
+        app:layout_constraintTop_toBottomOf="@+id/enterPassword" />
+
+
+    <ImageView
+        android:id="@+id/frankenstaineImage"
+        android:layout_width="177dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rapid_logo" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

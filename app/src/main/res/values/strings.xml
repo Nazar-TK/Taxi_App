@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Rapid</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="enter_username">Enter username…</string>
+    <string name="enter_phone_number">Enter phone number…</string>
+    <string name="enter_email">Enter email…</string>
+    <string name="empty_email">Email is required!</string>
+    <string name="enter_password">Enter password…</string>
+    <string name="empty_password">Password is required!</string>
+    <string name="enter_password_again">Enter password again…</string>
+
+    <string name="facebook_app_id">627921385443797</string>
+    <string name="fb_login_protocol_scheme">fb627921385443797</string>
+    <string name="facebook_client_token">0f24d31d6109f7a2c4ebc8890ac17fa6</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_success">Signed in successfully!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="log_out">Log out</string>
+    <string name="log_in_with_facebook">Log in with Facebook</string>
+    <string name="log_in_with_google">Log in with Google</string>
+    <string name="account_is_not_present">Don`t have an account?</string>
+    <string name="account_is_present">Already have an account?</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="reset_password">Reset password?</string>
+    <string name="enter_email_to_get_reset_mail_link">Enter your email to get reset email link:</string>
+    <string name="password_reset_link_sent">Password reset link sent to your email</string>
+    <string name="password_reset_link_not_sent">Password reset link was not sent!</string>
+    <string name="user_profile">User profile</string>
+    <string name="settings">Settings</string>
+    <string name="users">users</string>
+    <string name="username">username</string>
+    <string name="email">email</string>
+</resources>
