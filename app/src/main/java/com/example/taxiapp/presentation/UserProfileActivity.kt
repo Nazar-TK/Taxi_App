@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.taxiapp.R
+import com.example.taxiapp.presentation.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class UserProfileActivity : AppCompatActivity() {

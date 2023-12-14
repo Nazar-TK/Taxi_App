@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.RegistrationActivity">
+    tools:context=".presentation.PassengerRegistrationActivity">
 
 
     <ImageView
-        android:id="@+id/frankenstaineImage"
+        android:id="@+id/rapidImage"
         android:layout_width="177dp"
         android:layout_height="132dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/enterUsername"
+        app:layout_constraintBottom_toTopOf="@+id/enterFirstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,20 +21,34 @@
         app:srcCompat="@drawable/rapid_logo" />
 
     <EditText
-        android:id="@+id/enterUsername"
+        android:id="@+id/enterFirstName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="48dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/rounded_edit_text"
         android:ems="10"
-        android:hint="@string/enter_username"
+        android:hint="@string/enter_first_name"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="36dp"
+        android:paddingStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rapidImage" />
+
+    <EditText
+        android:id="@+id/enterLastName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edit_text"
+        android:ems="10"
+        android:hint="@string/enter_last_name"
         android:inputType="textPersonName"
         android:paddingHorizontal="36dp"
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frankenstaineImage" />
+        app:layout_constraintTop_toBottomOf="@+id/enterFirstName" />
 
     <EditText
         android:id="@+id/enterPhoneNumber"
@@ -46,10 +60,10 @@
         android:hint="@string/enter_phone_number"
         android:inputType="phone"
         android:paddingStart="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/enterUsername"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/enterUsername"
-        app:layout_constraintTop_toBottomOf="@+id/enterUsername" />
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/enterLastName" />
 
     <EditText
         android:id="@+id/enterEmailAddress"
@@ -61,9 +75,9 @@
         android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
         android:paddingStart="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/enterUsername"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/enterUsername"
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
         app:layout_constraintTop_toBottomOf="@+id/enterPhoneNumber" />
 
     <EditText
@@ -76,8 +90,8 @@
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:paddingStart="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/enterUsername"
-        app:layout_constraintStart_toStartOf="@+id/enterUsername"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
         app:layout_constraintTop_toBottomOf="@+id/enterEmailAddress" />
 
     <EditText
@@ -90,8 +104,8 @@
         android:hint="@string/enter_password_again"
         android:inputType="textPassword"
         android:paddingStart="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/enterUsername"
-        app:layout_constraintStart_toStartOf="@+id/enterUsername"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
         app:layout_constraintTop_toBottomOf="@+id/enterPassword" />
 
     <Button
@@ -102,9 +116,9 @@
         android:backgroundTint="@color/black"
         android:text="@string/sign_up"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/enterUsername"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/enterUsername"
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
         app:layout_constraintTop_toBottomOf="@+id/enterPasswordAgain" />
 
     <TextView
@@ -116,7 +130,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/logInButton"
-        app:layout_constraintStart_toStartOf="@+id/enterUsername"
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
         app:layout_constraintTop_toTopOf="@+id/logInButton" />
 
     <Button
@@ -128,7 +142,7 @@
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/enterUsername"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
     <ProgressBar

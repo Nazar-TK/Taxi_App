@@ -7,36 +7,38 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.taxiapp.R
-import com.example.taxiapp.databinding.ActivityRegistrationBinding
+import com.example.taxiapp.databinding.ActivityDriverRegistrationBinding
+import com.example.taxiapp.databinding.ActivityPassengerRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class RegistrationActivity : AppCompatActivity() {
+class DriverRegistrationActivity : AppCompatActivity() {private val TAG: String? = PassengerRegistrationActivity::class.simpleName
 
-    private val TAG: String? = RegistrationActivity::class.simpleName
-
-    lateinit var binding : ActivityRegistrationBinding
+    lateinit var binding : ActivityDriverRegistrationBinding
     lateinit var firebaseAuth : FirebaseAuth
     lateinit var firebaseDB : FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegistrationBinding.inflate(layoutInflater)
+        binding = ActivityDriverRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.registerButton.setOnClickListener {
             Log.d(TAG, "registerButton")
-            val username : String  = binding.enterUsername.text.toString().trim()
+            val firstName : String  = binding.enterFirstName.text.toString().trim()
+            val lastName : String  = binding.enterLastName.text.toString().trim()
             val phoneNumber : String  = binding.enterPhoneNumber.text.toString().trim()
             val email: String = binding.enterEmailAddress.text.toString().trim()
             val password : String = binding.enterPassword.text.toString()
             val confirmationPassword : String = binding.enterPasswordAgain.text.toString()
+            val carMake : String = binding.enterCarMake.text.toString().trim()
+            val carModel : String = binding.enterCarModel.text.toString().trim()
 
             // user registration
-            if(registrationDataValidation(username, phoneNumber, email, password, confirmationPassword)) {
+            if(registrationDataValidation(firstName, lastName, phoneNumber, email, password, confirmationPassword, carMake, carModel)) {
                 binding.progressBar.visibility = View.VISIBLE
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { result ->
                     if(result.isSuccessful) {
@@ -59,13 +61,19 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
 
-    private fun registrationDataValidation(username : String, phoneNumber: String, email : String, password : String, confirmationPassword : String) : Boolean
+    private fun registrationDataValidation(firstName : String, lastName : String, phoneNumber: String,
+                                           email : String, password : String, confirmationPassword : String,
+                                           carMake : String, carModel : String) : Boolean
     {
         var isDataEnteredCorrectly = true
 
         binding.apply {
-            if(username.isEmpty()) {
-                enterUsername.error = "Username is required!"
+            if(firstName.isEmpty()) {
+                enterFirstName.error = "First name is required!"
+                isDataEnteredCorrectly = false
+            }
+            else if(lastName.isEmpty()) {
+                enterLastName.error = "Last name is required!"
                 isDataEnteredCorrectly = false
             }
             else if(phoneNumber.isEmpty()) {
@@ -91,6 +99,14 @@ class RegistrationActivity : AppCompatActivity() {
             else if(password != confirmationPassword) {
                 enterPasswordAgain.text.clear()
                 enterPasswordAgain.error = "Password and confirmation password do not match!"
+                isDataEnteredCorrectly = false
+            }
+            else if(carMake.isEmpty()) {
+                enterCarMake.error = "Car make is required!"
+                isDataEnteredCorrectly = false
+            }
+            else if(carModel.isEmpty()) {
+                enterCarModel.error = "Car model is required!"
                 isDataEnteredCorrectly = false
             }
         }
