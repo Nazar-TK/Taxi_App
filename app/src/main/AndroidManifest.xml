@@ -15,7 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaxiApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".presentation.userprofile.EditDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.userprofile.EditPassengerActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true">
@@ -25,26 +30,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".presentation.PassengerRegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.DriverRegistrationActivity"
             android:exported="false" />
-
         <activity
             android:name=".presentation.PassengerActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.DriverActivity"
             android:exported="false" />
-
         <activity
-            android:name=".presentation.PassengerProfileActivity"
+            android:name=".presentation.userprofile.PassengerProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.DriverProfileActivity"
+            android:name=".presentation.userprofile.DriverProfileActivity"
             android:exported="false" />
     </application>
 

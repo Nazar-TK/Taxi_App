@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.taxiapp.core.Constants
 import com.example.taxiapp.core.Resource
 import com.example.taxiapp.data.DriverRepositoryImpl
 import com.example.taxiapp.databinding.ActivityDriverRegistrationBinding
@@ -14,6 +15,8 @@ import com.example.taxiapp.domain.model.Driver
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 //class DriverRegistrationActivity @Inject constructor(repository: DriverRepository) : AppCompatActivity() {
 class DriverRegistrationActivity : AppCompatActivity() {
@@ -23,6 +26,8 @@ class DriverRegistrationActivity : AppCompatActivity() {
     lateinit var binding : ActivityDriverRegistrationBinding
     lateinit var firebaseAuth : FirebaseAuth
     private lateinit var firebaseRef : DatabaseReference
+    lateinit var firebaseDB : FirebaseDatabase
+    private lateinit var storageRef : StorageReference
    // @Inject
    // lateinit var repository: DriverRepository
 
@@ -32,7 +37,9 @@ class DriverRegistrationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseRef = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com").getReference("drivers")
+        //firebaseRef = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com").getReference("drivers")
+        firebaseDB = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com")
+        storageRef = FirebaseStorage.getInstance().getReference(Constants.USERS_AVATARS)
 
         binding.registerButton.setOnClickListener {
             Log.d(TAG, "registerButton")
@@ -50,7 +57,7 @@ class DriverRegistrationActivity : AppCompatActivity() {
             if(registrationDataValidation(firstName, lastName, phoneNumber, email, password, confirmationPassword, carMake, carModel)) {
                 binding.progressBar.visibility = View.VISIBLE
 
-                val repository = DriverRepositoryImpl(firebaseAuth, firebaseRef)
+                val repository = DriverRepositoryImpl(firebaseAuth, firebaseDB, storageRef)
 
                 val car = Car(make = carMake, model = carModel, color = carColor)
                 val driver = Driver(
@@ -59,7 +66,7 @@ class DriverRegistrationActivity : AppCompatActivity() {
                 )
 
 
-                val result = repository.saveDriver(driver, password)
+                val result = repository.registerDriver(driver, password)
 
                 when(result) {
                     is Resource.Success -> {

@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.taxiapp.R
 import com.example.taxiapp.databinding.ActivityDriverBinding
-import com.example.taxiapp.databinding.ActivityPassengerBinding
+import com.example.taxiapp.presentation.userprofile.DriverProfileActivity
 
 class DriverActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDriverBinding

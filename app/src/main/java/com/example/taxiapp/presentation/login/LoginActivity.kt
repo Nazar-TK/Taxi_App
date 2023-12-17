@@ -9,7 +9,6 @@ import com.example.taxiapp.core.UserType
 import com.example.taxiapp.core.UserTypeCallback
 import com.example.taxiapp.databinding.ActivityLoginBinding
 import com.example.taxiapp.presentation.DriverActivity
-import com.example.taxiapp.presentation.DriverProfileActivity
 import com.example.taxiapp.presentation.PassengerActivity
 import com.google.android.material.tabs.TabLayout
 

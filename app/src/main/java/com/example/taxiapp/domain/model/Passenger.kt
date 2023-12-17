@@ -7,5 +7,6 @@ data class Passenger(
     val lastName: String? = null,
     val email: String? = null,
     val phoneNumber: String? = null,
-    //val order: Trip? = null
+    val imgUri: String? = null,
+    val order: Trip? = null
 )

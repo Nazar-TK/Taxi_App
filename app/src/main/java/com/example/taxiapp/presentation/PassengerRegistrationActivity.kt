@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.taxiapp.core.Constants
 import com.example.taxiapp.core.Resource
 import com.example.taxiapp.data.PassengerRepositoryImpl
 import com.example.taxiapp.databinding.ActivityPassengerRegistrationBinding
 import com.example.taxiapp.domain.model.Passenger
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 //@AndroidEntryPoint
 //class PassengerRegistrationActivity @Inject constructor(private val repository: PassengerRepository) : AppCompatActivity() {
@@ -23,6 +26,7 @@ class PassengerRegistrationActivity: AppCompatActivity() {
     private lateinit var binding : ActivityPassengerRegistrationBinding
     private lateinit var firebaseAuth : FirebaseAuth
     lateinit var firebaseDB : FirebaseDatabase
+    private lateinit var storageRef : StorageReference
 //    @Inject
 //    lateinit var repository: PassengerRepository
 
@@ -34,6 +38,7 @@ class PassengerRegistrationActivity: AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         //firebaseRef = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com").getReference("passengers")
         firebaseDB = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com")
+        storageRef = FirebaseStorage.getInstance().getReference(Constants.USERS_AVATARS)
 
         binding.registerButton.setOnClickListener {
             Log.d(TAG, "registerButton")
@@ -52,13 +57,13 @@ class PassengerRegistrationActivity: AppCompatActivity() {
                     TODO ("REMOVE REPOSITORY TO DI")
                 }
                 //
-                val repository = PassengerRepositoryImpl(firebaseAuth, firebaseDB)
+                val repository = PassengerRepositoryImpl(firebaseAuth, firebaseDB, storageRef)
                 val passenger = Passenger(
                     firstName = firstName, lastName = lastName,
                     phoneNumber = phoneNumber, email = email
                 )
 
-                val result = repository.savePassenger(passenger, password)
+                val result = repository.registerPassenger(passenger, password)
 
                 when(result) {
                     is Resource.Success -> {

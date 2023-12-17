@@ -1,5 +1,6 @@
 package com.example.taxiapp.di
 
+import com.example.taxiapp.core.Constants
 import com.example.taxiapp.data.DriverRepositoryImpl
 import com.example.taxiapp.data.PassengerRepositoryImpl
 import com.example.taxiapp.domain.repository.DriverRepository
@@ -7,6 +8,8 @@ import com.example.taxiapp.domain.repository.PassengerRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,9 +31,14 @@ object TaxiModule {
     @Provides
     @Singleton
     fun provideRealtimeDatabase(): FirebaseDatabase {
-        return FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com")
+        return FirebaseDatabase.getInstance(Constants.DATABASE_URL)
     }
 
+    @Provides
+    @Singleton
+    fun provideStorageReference(): StorageReference {
+        return FirebaseStorage.getInstance().getReference(Constants.USERS_AVATARS)
+    }
 
 //    @Provides
 //    @Singleton
@@ -48,17 +56,19 @@ object TaxiModule {
     @Singleton
     fun provideDriverRepository(
         firebaseAuth: FirebaseAuth,
-        firebaseRef : DatabaseReference
+        databaseRef : FirebaseDatabase,
+        storageRef: StorageReference
     ): DriverRepository {
-        return DriverRepositoryImpl(firebaseAuth, firebaseRef)
+        return DriverRepositoryImpl(firebaseAuth, databaseRef, storageRef)
     }
 
     @Provides
     @Singleton
     fun providePassengerRepository(
         firebaseAuth: FirebaseAuth,
-        databaseRef : FirebaseDatabase
+        databaseRef : FirebaseDatabase,
+        storageRef: StorageReference
     ): PassengerRepository {
-        return PassengerRepositoryImpl(firebaseAuth, databaseRef)
+        return PassengerRepositoryImpl(firebaseAuth, databaseRef, storageRef)
     }
 }

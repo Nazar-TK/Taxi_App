@@ -42,6 +42,9 @@
     <string name="users">users</string>
     <string name="username">username</string>
     <string name="email">email</string>
+    <string name="edit_user_profile">Edit profile</string>
+    <string name="change_photo">Change photo</string>
+    <string name="update_profile">Update profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

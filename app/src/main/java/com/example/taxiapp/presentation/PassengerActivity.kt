@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.taxiapp.R
 import com.example.taxiapp.databinding.ActivityPassengerBinding
+import com.example.taxiapp.presentation.userprofile.PassengerProfileActivity
 
 class PassengerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPassengerBinding
