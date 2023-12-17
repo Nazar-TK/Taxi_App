@@ -17,6 +17,7 @@
     <string name="enter_password_again">Password again…</string>
     <string name="car_make">Car make…</string>
     <string name="car_model">Car model…</string>
+    <string name="car_color">Car color…</string>
 
     <string name="facebook_app_id">627921385443797</string>
     <string name="fb_login_protocol_scheme">fb627921385443797</string>

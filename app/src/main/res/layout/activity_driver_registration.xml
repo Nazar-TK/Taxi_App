@@ -9,10 +9,9 @@
 
     <ImageView
         android:id="@+id/rapidImage"
-        android:layout_width="177dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="180dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/enterFirstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edit_text"
         android:ems="10"
         android:hint="@string/enter_first_name"
@@ -118,7 +117,7 @@
         android:background="@drawable/rounded_edit_text"
         android:ems="10"
         android:hint="@string/car_make"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintStart_toStartOf="@+id/enterFirstName"
@@ -132,24 +131,38 @@
         android:background="@drawable/rounded_edit_text"
         android:ems="10"
         android:hint="@string/car_model"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintStart_toStartOf="@+id/enterFirstName"
         app:layout_constraintTop_toBottomOf="@+id/enterCarMake" />
 
+    <EditText
+        android:id="@+id/enterCarColor"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edit_text"
+        android:ems="10"
+        android:hint="@string/car_color"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
+        app:layout_constraintStart_toStartOf="@+id/enterFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/enterCarModel" />
+
     <Button
         android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/black"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/enterFirstName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/enterFirstName"
-        app:layout_constraintTop_toBottomOf="@+id/enterCarModel" />
+        app:layout_constraintTop_toBottomOf="@+id/enterCarColor" />
 
     <TextView
         android:id="@+id/noneAccountTextView"

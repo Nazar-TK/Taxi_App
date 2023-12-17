@@ -6,18 +6,25 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.taxiapp.core.Resource
+import com.example.taxiapp.data.PassengerRepositoryImpl
 import com.example.taxiapp.databinding.ActivityPassengerRegistrationBinding
+import com.example.taxiapp.domain.model.Passenger
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.FirebaseDatabase
 
-class PassengerRegistrationActivity : AppCompatActivity() {
+//@AndroidEntryPoint
+//class PassengerRegistrationActivity @Inject constructor(private val repository: PassengerRepository) : AppCompatActivity() {
+
+class PassengerRegistrationActivity: AppCompatActivity() {
 
     private val TAG: String? = PassengerRegistrationActivity::class.simpleName
 
-    lateinit var binding : ActivityPassengerRegistrationBinding
-    lateinit var firebaseAuth : FirebaseAuth
-    lateinit var firebaseDB : FirebaseFirestore
-
+    private lateinit var binding : ActivityPassengerRegistrationBinding
+    private lateinit var firebaseAuth : FirebaseAuth
+    lateinit var firebaseDB : FirebaseDatabase
+//    @Inject
+//    lateinit var repository: PassengerRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +32,8 @@ class PassengerRegistrationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        //firebaseRef = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com").getReference("passengers")
+        firebaseDB = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com")
 
         binding.registerButton.setOnClickListener {
             Log.d(TAG, "registerButton")
@@ -38,16 +47,32 @@ class PassengerRegistrationActivity : AppCompatActivity() {
             // user registration
             if(registrationDataValidation(firstName, lastName, phoneNumber, email, password, confirmationPassword)) {
                 binding.progressBar.visibility = View.VISIBLE
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { result ->
-                    if(result.isSuccessful) {
+
+                {
+                    TODO ("REMOVE REPOSITORY TO DI")
+                }
+                //
+                val repository = PassengerRepositoryImpl(firebaseAuth, firebaseDB)
+                val passenger = Passenger(
+                    firstName = firstName, lastName = lastName,
+                    phoneNumber = phoneNumber, email = email
+                )
+
+                val result = repository.savePassenger(passenger, password)
+
+                when(result) {
+                    is Resource.Success -> {
                         Toast.makeText(this, "Registered successfully!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, PassengerActivity::class.java))
                         finish()
-                    } else {
-                        Toast.makeText(this, result.exception?.message.toString(), Toast.LENGTH_SHORT).show()
-                        binding.progressBar.visibility = View.INVISIBLE
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this, result.message.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
+
+                binding.progressBar.visibility = View.INVISIBLE
+
             }
         }
         binding.logInButton.setOnClickListener(object : View.OnClickListener {
@@ -57,7 +82,6 @@ class PassengerRegistrationActivity : AppCompatActivity() {
             }
         })
     }
-
 
     private fun registrationDataValidation(firstName : String, lastName : String, phoneNumber: String, email : String, password : String, confirmationPassword : String) : Boolean
     {

@@ -10,7 +10,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.taxiapp.R
 import com.example.taxiapp.databinding.FragmentPassengerLoginBinding
-import com.example.taxiapp.presentation.MainActivity
+import com.example.taxiapp.presentation.PassengerActivity
 import com.example.taxiapp.presentation.PassengerRegistrationActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -86,7 +86,7 @@ class PassengerLoginFragment(private val firebaseAuth: FirebaseAuth) : Fragment(
     {
         if(firebaseAuth.currentUser != null)
         {
-            startActivity(Intent(activity, MainActivity::class.java))
+            startActivity(Intent(activity, PassengerActivity::class.java))
             requireActivity().finish()
         }
     }

@@ -6,18 +6,25 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.example.taxiapp.R
+import com.example.taxiapp.core.Resource
+import com.example.taxiapp.data.DriverRepositoryImpl
 import com.example.taxiapp.databinding.ActivityDriverRegistrationBinding
-import com.example.taxiapp.databinding.ActivityPassengerRegistrationBinding
+import com.example.taxiapp.domain.model.Car
+import com.example.taxiapp.domain.model.Driver
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-class DriverRegistrationActivity : AppCompatActivity() {private val TAG: String? = PassengerRegistrationActivity::class.simpleName
+//class DriverRegistrationActivity @Inject constructor(repository: DriverRepository) : AppCompatActivity() {
+class DriverRegistrationActivity : AppCompatActivity() {
+
+    private val TAG: String? = DriverRegistrationActivity::class.simpleName
 
     lateinit var binding : ActivityDriverRegistrationBinding
     lateinit var firebaseAuth : FirebaseAuth
-    lateinit var firebaseDB : FirebaseFirestore
-
+    private lateinit var firebaseRef : DatabaseReference
+   // @Inject
+   // lateinit var repository: DriverRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +32,7 @@ class DriverRegistrationActivity : AppCompatActivity() {private val TAG: String?
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        firebaseRef = FirebaseDatabase.getInstance("https://taxiapp-99fcc-default-rtdb.firebaseio.com").getReference("drivers")
 
         binding.registerButton.setOnClickListener {
             Log.d(TAG, "registerButton")
@@ -36,20 +44,35 @@ class DriverRegistrationActivity : AppCompatActivity() {private val TAG: String?
             val confirmationPassword : String = binding.enterPasswordAgain.text.toString()
             val carMake : String = binding.enterCarMake.text.toString().trim()
             val carModel : String = binding.enterCarModel.text.toString().trim()
+            val carColor : String = binding.enterCarColor.text.toString().trim()
 
             // user registration
             if(registrationDataValidation(firstName, lastName, phoneNumber, email, password, confirmationPassword, carMake, carModel)) {
                 binding.progressBar.visibility = View.VISIBLE
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { result ->
-                    if(result.isSuccessful) {
+
+                val repository = DriverRepositoryImpl(firebaseAuth, firebaseRef)
+
+                val car = Car(make = carMake, model = carModel, color = carColor)
+                val driver = Driver(
+                    firstName = firstName, lastName = lastName,
+                    phoneNumber = phoneNumber, email = email, car = car
+                )
+
+
+                val result = repository.saveDriver(driver, password)
+
+                when(result) {
+                    is Resource.Success -> {
                         Toast.makeText(this, "Registered successfully!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, PassengerActivity::class.java))
                         finish()
-                    } else {
-                        Toast.makeText(this, result.exception?.message.toString(), Toast.LENGTH_SHORT).show()
-                        binding.progressBar.visibility = View.INVISIBLE
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this, result.message.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
+
+                binding.progressBar.visibility = View.INVISIBLE
             }
         }
         binding.logInButton.setOnClickListener(object : View.OnClickListener {

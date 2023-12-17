@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.UserProfileActivity">
+    tools:context=".presentation.DriverProfileActivity">
 
     <TextView
         android:id="@+id/usernameTV"
@@ -29,6 +29,17 @@
         app:layout_constraintStart_toStartOf="@+id/usernameTV"
         app:layout_constraintTop_toBottomOf="@+id/usernameTV" />
 
+    <TextView
+        android:id="@+id/carryVelocityTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/emailTV"
+        app:layout_constraintTop_toBottomOf="@+id/emailTV" />
+
     <Button
         android:id="@+id/logOutButton"
         android:layout_width="0dp"
@@ -40,7 +51,8 @@
         android:text="@string/log_out"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTV" />
+        app:layout_constraintTop_toBottomOf="@+id/carryVelocityTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
