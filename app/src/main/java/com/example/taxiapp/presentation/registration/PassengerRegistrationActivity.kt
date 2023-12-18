@@ -1,4 +1,4 @@
-package com.example.taxiapp.presentation
+package com.example.taxiapp.presentation.registration
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import com.example.taxiapp.core.Resource
 import com.example.taxiapp.data.PassengerRepositoryImpl
 import com.example.taxiapp.databinding.ActivityPassengerRegistrationBinding
 import com.example.taxiapp.domain.model.Passenger
+import com.example.taxiapp.presentation.mainscreen.passengerscreen.PassengerActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage

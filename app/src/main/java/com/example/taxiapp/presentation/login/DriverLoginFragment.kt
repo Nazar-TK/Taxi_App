@@ -10,8 +10,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.taxiapp.R
 import com.example.taxiapp.databinding.FragmentDriverLoginBinding
-import com.example.taxiapp.presentation.DriverActivity
-import com.example.taxiapp.presentation.DriverRegistrationActivity
+import com.example.taxiapp.presentation.mainscreen.driverscreen.DriverActivity
+import com.example.taxiapp.presentation.registration.DriverRegistrationActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class DriverLoginFragment(private val firebaseAuth: FirebaseAuth) : Fragment() {

@@ -8,8 +8,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.taxiapp.core.UserType
 import com.example.taxiapp.core.UserTypeCallback
 import com.example.taxiapp.databinding.ActivityLoginBinding
-import com.example.taxiapp.presentation.DriverActivity
-import com.example.taxiapp.presentation.PassengerActivity
+import com.example.taxiapp.presentation.mainscreen.driverscreen.DriverActivity
+import com.example.taxiapp.presentation.mainscreen.passengerscreen.PassengerActivity
 import com.google.android.material.tabs.TabLayout
 
 import com.google.firebase.auth.FirebaseAuth
@@ -74,11 +74,13 @@ class LoginActivity: AppCompatActivity() {
                 override fun onUserTypeFound(userType: UserType?) {
                     when (userType) {
                         UserType.PASSENGER -> {
+                            Log.d(TAG, "User is PASSENGER")
                             startActivity(Intent(this@LoginActivity, PassengerActivity::class.java))
                             finish()
                         }
 
                         UserType.DRIVER -> {
+                            Log.d(TAG, "User is DRIVER")
                             startActivity(Intent(this@LoginActivity, DriverActivity::class.java))
                             finish()
                         }
@@ -93,7 +95,7 @@ class LoginActivity: AppCompatActivity() {
         }
     }
 
-    fun checkUserType(userId: String, callback: UserTypeCallback) {
+    private fun checkUserType(userId: String, callback: UserTypeCallback) {
         val driversReference = FirebaseDatabase.getInstance().getReference("drivers")
 
         driversReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {

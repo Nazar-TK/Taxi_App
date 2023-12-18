@@ -45,6 +45,13 @@
     <string name="edit_user_profile">Edit profile</string>
     <string name="change_photo">Change photo</string>
     <string name="update_profile">Update profile</string>
+
+
+    <string name="your_location">Your location</string>
+    <string name="destination_location">Destination location</string>
+    <string name="order_a_taxi">Order a taxi</string>
+    <string name="looking_for_a_driver">Looking for a driver...</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

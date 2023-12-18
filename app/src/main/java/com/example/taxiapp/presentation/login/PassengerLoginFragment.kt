@@ -10,8 +10,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.taxiapp.R
 import com.example.taxiapp.databinding.FragmentPassengerLoginBinding
-import com.example.taxiapp.presentation.PassengerActivity
-import com.example.taxiapp.presentation.PassengerRegistrationActivity
+import com.example.taxiapp.presentation.mainscreen.passengerscreen.PassengerActivity
+import com.example.taxiapp.presentation.registration.PassengerRegistrationActivity
 import com.google.firebase.auth.FirebaseAuth
 
 

@@ -53,16 +53,6 @@
             app:layout_constraintStart_toStartOf="@+id/logInButton"
             app:layout_constraintTop_toTopOf="@+id/signUpButton" />
 
-        <!--    <TextView-->
-        <!--        android:id="@+id/forgotPasswordButton"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="16dp"-->
-        <!--        android:text="@string/forgot_password"-->
-        <!--        android:textColor="@color/black"-->
-        <!--        app:layout_constraintEnd_toEndOf="@+id/facebookLogInButton"-->
-        <!--        app:layout_constraintStart_toStartOf="@+id/googleLogInButton"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/googleLogInButton" />-->
 
         <Button
             android:id="@+id/signUpButton"

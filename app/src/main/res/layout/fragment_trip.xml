@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#DAD8D8"
+    tools:context=".presentation.mainscreen.passengerscreen.TripFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etStartLocation"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_edit_text"
+            android:ems="10"
+            android:hint="@string/your_location"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etDestinationLocation"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_edit_text"
+            android:ems="10"
+            android:hint="@string/destination_location"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/etStartLocation"
+            app:layout_constraintStart_toStartOf="@+id/etStartLocation"
+            app:layout_constraintTop_toBottomOf="@+id/etStartLocation" />
+
+        <Button
+            android:id="@+id/btnOrderTaxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_edit_text"
+            android:text="@string/order_a_taxi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/etDestinationLocation"
+            app:layout_constraintStart_toStartOf="@+id/etDestinationLocation"
+            app:layout_constraintTop_toBottomOf="@+id/etDestinationLocation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

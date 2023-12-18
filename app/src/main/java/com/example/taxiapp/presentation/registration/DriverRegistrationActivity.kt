@@ -1,4 +1,4 @@
-package com.example.taxiapp.presentation
+package com.example.taxiapp.presentation.registration
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,8 @@ import com.example.taxiapp.data.DriverRepositoryImpl
 import com.example.taxiapp.databinding.ActivityDriverRegistrationBinding
 import com.example.taxiapp.domain.model.Car
 import com.example.taxiapp.domain.model.Driver
+import com.example.taxiapp.presentation.mainscreen.driverscreen.DriverActivity
+import com.example.taxiapp.presentation.mainscreen.passengerscreen.PassengerActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -71,7 +73,7 @@ class DriverRegistrationActivity : AppCompatActivity() {
                 when(result) {
                     is Resource.Success -> {
                         Toast.makeText(this, "Registered successfully!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, PassengerActivity::class.java))
+                        startActivity(Intent(this, DriverActivity::class.java))
                         finish()
                     }
                     is Resource.Error -> {
